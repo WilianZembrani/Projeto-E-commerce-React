@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="">
           <img src={assets.logo} alt="" className="mb-5 w-32" />
           <p className="w-full md:w-2/3 text-gray-600">
-            Na FOREVER, acreditamos que a moda deve ser acessível, estilosa e atemporal. Oferecemos peças de alta
+            Na MzModas, acreditamos que a moda deve ser acessível, estilosa e atemporal. Oferecemos peças de alta
             qualidade, seguindo as últimas tendências para que você se sinta incrível em qualquer ocasião.
           </p>
         </div>
