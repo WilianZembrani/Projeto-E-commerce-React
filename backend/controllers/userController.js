@@ -14,20 +14,20 @@ const loginUser = async (req, res) => {
     const user = await userModel.findOne({ email });
 
     if (!user) {
-      return res.json({ sucess: false, message: 'Usuário não existe' });
+      return res.json({ success: false, message: 'Usuário não existe' });
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (isMatch) {
       const token = createToken(user._id);
-      res.json({ sucess: true, token });
+      res.json({ success: true, token });
     } else {
-      res.json({ sucess: false, message: 'Credenciais inválidas' });
+      res.json({ success: false, message: 'Credenciais inválidas' });
     }
   } catch (error) {
     console.log(error);
-    res.json({ sucess: false, message: error.message });
+    res.json({ success: false, message: error.message });
   }
 };
 
@@ -38,15 +38,15 @@ const registerUser = async (req, res) => {
 
     const exists = await userModel.findOne({ email });
     if (exists) {
-      return res.json({ sucess: false, message: 'O usuário já existe' });
+      return res.json({ success: false, message: 'O usuário já existe' });
     }
 
     if (!validator.isEmail(email)) {
-      return res.json({ sucess: false, message: 'Por favor adicione um Email válido!' });
+      return res.json({ success: false, message: 'Por favor adicione um Email válido!' });
     }
 
     if (password.length < 8) {
-      return res.json({ sucess: false, message: 'Por favor adicione uma senha forte!' });
+      return res.json({ success: false, message: 'Por favor adicione uma senha forte!' });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -60,10 +60,10 @@ const registerUser = async (req, res) => {
 
     const user = await newUser.save();
     const token = createToken(user._id);
-    res.json({ sucess: true, token });
+    res.json({ success: true, token });
   } catch (error) {
     console.log(error);
-    res.json({ sucess: false, message: error.message });
+    res.json({ success: false, message: error.message });
   }
 };
 

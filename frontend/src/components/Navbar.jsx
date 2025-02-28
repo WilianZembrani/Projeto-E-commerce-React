@@ -6,7 +6,14 @@ import { ShopContext } from '../context/ShopContext';
 const Navbar = () => {
   const [visible, setVisible] = useState(false);
 
-  const { setShowSearch, getCartCount } = useContext(ShopContext);
+  const { setShowSearch, getCartCount, navigate, token, setToken, setCartItems } = useContext(ShopContext);
+
+  const logout = () => {
+    navigate('/login')
+    localStorage.removeItem('token')
+    setToken('')
+    setCartItems({})
+  }
 
   return (
     <div className="flex items-center justify-between py-5 font-medium">
@@ -43,7 +50,7 @@ const Navbar = () => {
             <div className="flex flex-col gap-2 w-36 py-3 px-5 bg-slate-100 text-gray-500 rounded ">
               <p className="cursor-pointer hover:text-black">Minha Conta</p>
               <p className="cursor-pointer hover:text-black">Pedidos</p>
-              <p className="cursor-pointer hover:text-black">Sair</p>
+              <p onClick={logout} className="cursor-pointer hover:text-black">Sair</p>
             </div>
           </div>
         </div>
@@ -56,9 +63,8 @@ const Navbar = () => {
         <img onClick={() => setVisible(true)} src={assets.menu_icon} className="w-5 cursor-pointer sm:hidden" alt="" />
       </div>
       <div
-        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${
-          visible ? 'w-full' : 'w-0'
-        }`}
+        className={`absolute top-0 right-0 bottom-0 overflow-hidden bg-white transition-all ${visible ? 'w-full' : 'w-0'
+          }`}
       >
         <div className="flex flex-col text-gray-600">
           <div onClick={() => setVisible(false)} className="flex items-center gap-4 p-3 cursor-pointer">
