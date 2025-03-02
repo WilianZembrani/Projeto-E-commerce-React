@@ -11,7 +11,7 @@ const placeOrder = async (req, res) => {
       items,
       address,
       amount,
-      paymentMethod: 'boleto',
+      paymentMethod: 'Boleto',
       payment: false,
       date: Date.now(),
     };
@@ -36,7 +36,16 @@ const placeOrderCard = async (req, res) => {};
 const allOrders = async (req, res) => {};
 
 // Pedidos dos usuarios frontend
-const userOrders = async (req, res) => {};
+const userOrders = async (req, res) => {
+  try {
+    const { userId } = req.body;
+    const orders = await orderModel.find({ userId });
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 // Atualização do status dos pedidos no painel admin
 const updateStatus = async (req, res) => {};
