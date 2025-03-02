@@ -56,7 +56,11 @@ const ShopContextProvider = props => {
           if (cartItems[items][item] > 0) {
             totalCount += cartItems[items][item];
           }
-        } catch (error) { }
+        } catch (error) {
+          console.log(error);
+          toast.error(error.message)
+
+        }
       }
     }
     return totalCount;
@@ -142,6 +146,7 @@ const ShopContextProvider = props => {
     setShowSearch,
     cartItems,
     addToCart,
+    setCartItems,
     getCartCount,
     updateQuantity,
     getCartAmount,

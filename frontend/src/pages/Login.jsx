@@ -16,6 +16,7 @@ const Login = () => {
     event.preventDefault();
     try {
       if (currentState === 'Cadastre-se') {
+        console.log('Dados de registro:', { name, email, password });
         const response = await axios.post(backendUrl + '/api/user/register', { name, email, password })
 
         if (response.data.success) {
@@ -68,8 +69,8 @@ const Login = () => {
         {currentState === 'Login' ? (
           <p>
             Novo por aqui?{' '}
-            <b onClick={() => setCurrentState('Criar uma nova conta')} className="cursor-pointer text-sm">
-              Cadastrar
+            <b onClick={() => setCurrentState('Cadastre-se')} className="cursor-pointer text-sm">
+              Cadastre-se
             </b>
           </p>
         ) : (
