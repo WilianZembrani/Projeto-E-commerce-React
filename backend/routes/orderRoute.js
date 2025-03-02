@@ -13,8 +13,8 @@ import authUser from '../middleware/auth.js';
 const orderRoute = express.Router();
 
 //recursos do admin
-orderRoute.post('list', adminAuth, allOrders);
-orderRoute.post('status', adminAuth, updateStatus);
+orderRoute.post('/list', adminAuth, allOrders);
+orderRoute.post('/status', adminAuth, updateStatus);
 
 //recursos de pagamentos
 orderRoute.post('/place', authUser, placeOrder);

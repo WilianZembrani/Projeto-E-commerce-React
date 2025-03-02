@@ -33,7 +33,15 @@ const placeOrderPix = async (req, res) => {};
 const placeOrderCard = async (req, res) => {};
 
 // Todas os pedidos no painel admin
-const allOrders = async (req, res) => {};
+const allOrders = async (req, res) => {
+  try {
+    const orders = await orderModel.find({});
+    res.json({ success: true, orders });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 // Pedidos dos usuarios frontend
 const userOrders = async (req, res) => {
@@ -48,6 +56,15 @@ const userOrders = async (req, res) => {
 };
 
 // Atualização do status dos pedidos no painel admin
-const updateStatus = async (req, res) => {};
+const updateStatus = async (req, res) => {
+  try {
+    const { orderId, status } = req.body;
+    await orderModel.findByIdAndUpdate(orderId, { status });
+    res.json({ success: true, message: 'Status Atualizado' });
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
 
 export { placeOrder, placeOrderPix, placeOrderCard, allOrders, userOrders, updateStatus };
