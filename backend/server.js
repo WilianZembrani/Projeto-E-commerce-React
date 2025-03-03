@@ -7,9 +7,6 @@ import userRouter from './routes/userRoute.js';
 import productRouter from './routes/productRoute.js';
 import cartRouter from './routes/cartRoute.js';
 import orderRoute from './routes/orderRoute.js';
-import mercadopago from 'mercadopago';
-
-mercadopago.configurations.setAccessToken(process.env.MERCADOPAGO_KEY_SECRET);
 
 const app = express();
 const port = process.env.PORT || 4000;
